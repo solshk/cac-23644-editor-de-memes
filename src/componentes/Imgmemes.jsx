@@ -35,7 +35,7 @@ export default function Imgmemes() {
 
             <figure>
                 <p>{textmeme}</p>
-                <img src={`./img/${imgmeme}.jpeg`} alt="" style={{ width: "10rem" }} />
+                <img src={`/img/${imgmeme}.jpeg`} alt="" style={{ width: "10rem" }} />
                 
             </figure>
         </div>
