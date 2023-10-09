@@ -2,30 +2,39 @@ import React, { useState, useEffect } from "react";
 
 const Api = () => {
 
-    const [users, setUsers] = useState([]);
+    const [memes, setMemes] = useState([]);
+    const [imgmeme, setImgmeme] = useState();
 
     useEffect(() => {
-        fetch("http://reqres.in/api/users")
+        fetch("https://api.imgflip.com/get_memes")
             .then(data => data.json())
-            .then(json => setUsers(json.data)); //aca se lo pasamos a la variable de estado
+            .then(json => setMemes(json.data.memes)); //aca se lo pasamos a la variable de estado
     }, []);
 
-    // console.log({users});
+    const seleccionarImg = (e) => {
+        setImgmeme(e.target.src);
+        // console.log(e.target);
+        // console.log(e.target.src);
+    }
 
-  return (
-    <div>
-        <h2>Ejemplo de Api</h2>
-        <ul>  
-              {users.map( user => (
-                  <li>
-                      <img src={user.avatar} />
-                      <p>{user.first_name}</p>
-                  </li>
-              ))}
-        </ul>
+    return (
+        
+        <div>
+            <figure>
+                <img src={imgmeme} alt="" style={{ width: "10rem" }} />
+            </figure>
 
-    </div>
-  )
+            <h2>Ejemplo de Api</h2>
+          
+            <div className="galeria">
+                {memes.map( meme => (
+                    <div className="contenedor-img" >
+                        <img src={meme.url} className="img" onClick={seleccionarImg} />
+                    </div>))
+                }                  
+            </div> 
+        </div>
+    )
 }
 
 export default Api;
