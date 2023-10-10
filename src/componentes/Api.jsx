@@ -13,8 +13,6 @@ const Api = () => {
 
     const seleccionarImg = (e) => {
         setImgmeme(e.target.src);
-        // console.log(e.target);
-        // console.log(e.target.src);
     }
 
     return (

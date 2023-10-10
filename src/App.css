@@ -1,14 +1,50 @@
-/* .App {
-  text-align: center;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
-
-.galeria{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
+h1{
+  margin: 2rem;
 }
 
+.galeria{
+  display: flex;
+  flex-direction: row;
+  height: 30vh;
+  align-items: flex-start;
+  overflow-x: scroll;
+}
+
+.contenedor-img{
+  height: 100%;
+  width: auto;
+}
 .img{
+  height: 100%;
+}
+
+.containerDos{
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 1rem;
+}
+
+.containerIngresarTexto{
+  width: 50%;
+}
+
+figure{
+  padding: 2rem;
+  width: 50%;
+}
+
+
+figure img {
+  min-width: 400px;
+  max-width: 600px;
+}
+
+.textoMeme{
+  position: relative;
+  top: 90%;
+  font-family: 'Anton', sans-serif;
+  color: white;
   width: 100%;
 }
