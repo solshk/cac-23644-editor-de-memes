@@ -1,6 +1,6 @@
 import './App.css';
 import Imgmemes from "./componentes/Imgmemes";
-import Api from "./componentes/Api";
+// import Api from "./componentes/Api";
 
 
 function App() {

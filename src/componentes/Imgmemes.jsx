@@ -42,7 +42,7 @@ export default function Imgmemes() {
             <div className="galeria">
                 {memes.map( meme => (
                     <div className="contenedor-img" >
-                        <img src={meme.url} className="img" onClick={seleccionarImg} />
+                        <img src={meme.url} className="img" onClick={seleccionarImg} alt={meme.name}/>
                     </div>))
                 }                  
             </div> 
