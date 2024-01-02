@@ -2,10 +2,10 @@ import html2canvas from "html2canvas";
 import React, { useState, useEffect } from "react";
 
 export default function Imgmemes() {
-
+ 
     // declaro las variabes de estado aca abajo
     const [memes, setMemes] = useState([]);
-    const [imgmeme, setImgmeme] = useState();
+    const [imgmeme, setImgmeme] = useState("https://i.imgflip.com/30b1gx.jpg");
     const [textmeme, setTextmeme] = useState();
 
     const textomeme = (e) =>{
@@ -36,30 +36,36 @@ export default function Imgmemes() {
 
     return (
         <div className="text-center">
-            <h1 className="">Editor de Memes</h1>
+            <h1>Editor de Memes</h1>
 
-            <h3>Seleccioná la imagen:</h3>
-            <div className="galeria">
-                {memes.map( meme => (
-                    <div className="contenedor-img" >
-                        <img src={meme.url} className="img" onClick={seleccionarImg} alt={meme.name}/>
-                    </div>))
-                }                  
-            </div> 
+            <div className="container">
+                <div className="meme-container">
+                    <figure id="exportar">
+                        <p className="textoMeme">{textmeme}</p>
+                        <img src={imgmeme} style={{ height: "100%", width: "100%"}}/>
+                    </figure>
+                </div> 
 
-            <div className="containerDos">
-                <div className="containerIngresarTexto">
-                    <h3>Ingresa el texto:</h3>
-                    <input onChange={textomeme} className="form-control m-auto d-block" type="text" placeholder="Texto 1" />
-                    <button onClick={descargar} type="button" className="btn btn-primary mt-4 mb-4">Descargar</button>
-                </div>
+                
+                <div className="editor-container">
+                    <h4>Seleccioná la imagen:</h4>
+                    <div className="galeria-container">
+                        {memes.map(meme => (
+                            <div className="contenedor-img" >
+                                <img src={meme.url} className="img" onClick={seleccionarImg} alt={meme.name}/>
+                            </div>))
+                        }               
+                    </div> 
 
-                <figure id="exportar">
-                    <p className="textoMeme">{textmeme}</p>
-                    <img src={imgmeme} alt="" style={{ width: "10rem" }} />
-                </figure>
-                       
-            </div>    
+                    <div className="texto-container">
+                        <h4>Ingresa el texto:</h4>
+                        <input onChange={textomeme} className="form-control m-auto d-block" type="text" placeholder="Texto 1" />
+                    </div>
+                </div>  
+            </div>
+
+            <button onClick={descargar} type="button" className="btn btn-primary mt-4 mb-4">Descargar</button>
+
         </div>
     )
 }

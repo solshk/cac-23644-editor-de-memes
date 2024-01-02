@@ -1,50 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&display=swap');
+
+/* VARIABLES */
+:root {
+  --violeta-oscuro: #331462;
+  --violeta-claro: #4315B7;
+  --violeta-extra-claro: #AA90EC;
+  --amarillo: #F9C824;
+  --cyan: #00C5F9;
+  --fucsia: #F701D8;
+
+  --font-claro: white;
+  --font-oscuro: #331462;
+
+  --font-base: 'Pixelify Sans', monospace;
+}
+
+*,
+*::before,
+*::after{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: var(--font-base);
+  /* font-size: 62.5%; */
+  color: var(--font-claro);
+  background: rgb(51, 20, 98);
+  background: linear-gradient(90deg, rgba(51, 20, 98, 1) 0%, rgba(100, 74, 219, 1) 63%, rgba(67, 21, 183, 1) 100%);
+}
+
 
 h1{
   margin: 2rem;
 }
 
-.galeria{
+.container{
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: row;
-  height: 30vh;
+  justify-content: space-between;
+}
+
+.meme-container{
+  background-color: var(--violeta-extra-claro);
+  flex-basis: 1;
+  max-width: 50%;
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-container {
+  background-color: var(--violeta-extra-claro);
+  flex-basis: 1;
+  width: 50%;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.galeria-container{
+  display: flex;
+  flex-direction: row;
+  height: 300px;
   align-items: flex-start;
   overflow-x: scroll;
 }
 
 .contenedor-img{
   height: 100%;
-  width: auto;
+  width: 100%;
 }
+
 .img{
   height: 100%;
 }
 
-.containerDos{
-  display: flex;
-  flex-direction: row-reverse;
-  padding: 1rem;
+.texto-container{
+  margin-top: 2rem;
 }
 
-.containerIngresarTexto{
-  width: 50%;
-}
-
-figure{
-  padding: 2rem;
-  width: 50%;
-}
-
-
-figure img {
-  min-width: 400px;
-  max-width: 600px;
-}
-
+/*
 .textoMeme{
   position: relative;
   top: 90%;
   font-family: 'Anton', sans-serif;
   color: white;
   width: 100%;
-}
+} */
