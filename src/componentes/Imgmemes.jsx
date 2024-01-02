@@ -69,7 +69,7 @@ export default function Imgmemes() {
 
 
                 <div className="editor-container">
-                    <h4>Seleccioná la imagen:</h4>
+                    <h4>Seleccioná otra imagen:</h4>
 
                     <div className="galeria-container">
                         {memes.map(meme => (
@@ -116,12 +116,10 @@ export default function Imgmemes() {
 
                         <div className="editor-row">
                             <div>
-                                <label>Ubicación horizontal:
+                                <label>Ubicación horizontal:</label>
                                     <input type="range" min="0" max="400" value={ejex2} onChange={(e) => setEjex2(e.target.value)} />
-                                </label>
-                                <label>Ubicación vertical:
+                                <label>Ubicación vertical:</label>
                                     <input type="range" min="0" max="600" value={ejey2} onChange={(e) => setEjey2(e.target.value)} />
-                                </label>
                             </div>
 
                             <div>
@@ -140,7 +138,11 @@ export default function Imgmemes() {
                 </div>
             </div>
 
-            <button onClick={descargar} type="button" className="btn btn-primary mt-4 mb-4">Descargar</button>
+            <button onClick={descargar} type="button" className="btn btn-primary" id="btn-descargar">Descargar</button>
+
+            <footer>
+                <p class="footer__creditos">Hecho con ❤ por <a href="https://github.com/solshk">solshk</a></p>
+            </footer>
 
         </div>
     )

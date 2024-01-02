@@ -23,6 +23,14 @@
   box-sizing: border-box;
 }
 
+a{
+  color: inherit;
+  text-decoration: none;
+}
+a:hover{
+  color: var(--amarillo);
+}
+
 body{
   font-family: var(--font-base);
   /* font-size: 62.5%; */
@@ -37,7 +45,7 @@ h1{
 }
 
 .container{
-  width: 100%;
+  min-width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -46,8 +54,7 @@ h1{
 
 .meme-container{
   background-color: var(--violeta-extra-claro);
-  flex-basis: 1;
-  max-width: 50%;
+  width: 50%;
   margin: 1rem;
   padding: 1rem;
   display: flex;
@@ -68,7 +75,6 @@ h1{
 
 .editor-container {
   background-color: var(--violeta-extra-claro);
-  flex-basis: 1;
   width: 50%;
   margin: 1rem;
   padding: 1rem;
@@ -106,4 +112,41 @@ h1{
 .color{
   margin: .5rem;
   border: none;
+}
+
+#btn-descargar{
+  background-color: var(--fucsia);
+  border: none;
+  margin: 2rem;
+  padding: 1rem 4rem 1rem 4rem;
+  font-size: 2rem;
+}
+
+#btn-descargar:hover {
+  transform: scale(0.98);
+}
+
+@media screen and (max-width: 768px) {
+  .container{
+    flex-direction: column;
+  }
+  .meme-container, .editor-container{
+    width: 100%;
+    margin: auto;
+  }
+  .editor-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .texto-container{
+    order:1;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+  .editor-container h4{
+    order:2;
+  }
+  .galeria-container{
+    order:3;
+  }
 }
