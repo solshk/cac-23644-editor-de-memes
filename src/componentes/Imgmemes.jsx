@@ -78,7 +78,7 @@ export default function Imgmemes() {
                     <div className="texto-container">
                         <div className="editor-row">
                             <h4>Ingresa el texto:</h4>
-                            <button className="btn btn-primary" onClick={handleClick}>+</button>
+                            <button className="btn btn-primary" id="btn-colorcito" onClick={handleClick}>+</button>
                         </div>
 
                         {textosMeme.map((val, i) =>
@@ -86,7 +86,7 @@ export default function Imgmemes() {
                                 <div className="editor-row">
                                     <input name="texto" className="form-control" type="text" placeholder="Ingresá el texto acá" onChange={(e) => handleChange(e, i)} />
                                     <input name="color" type="color" className="color" value={val.color} onChange={(e) => handleChange(e, i)} />
-                                    <button className="btn btn-primary" onClick={handleDelete}>x</button>
+                                    <button className="btn btn-primary" id="btn-colorcito" onClick={handleDelete}>x</button>
                                 </div>
 
                                 <div className="editor-row">
