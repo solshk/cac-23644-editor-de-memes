@@ -7,30 +7,8 @@ export default function Imgmemes() {
     const [memes, setMemes] = useState([]);
     const [imgmeme, setImgmeme] = useState("https://i.imgflip.com/30b1gx.jpg");
 
-    const [textmeme, setTextmeme] = useState();
-    const [fontSize, setFontSize] = useState(25);
-    const [ejex, setEjex] = useState(10);
-    const [ejey, setEjey] = useState(10);
-    const [color, setColor] = useState("#331462");
-    const [fontFamily, setFontFamily] = useState("Verdana");
+    const [textosMeme, setTextosMemes] = useState([{ texto: "", fontSize: "", fontFamily: "Verdana", color: "#F701D8", ejex: 10, ejey: 10 }]);
 
-    const [textmeme2, setTextmeme2] = useState();
-    const [fontSize2, setFontSize2] = useState(30);
-    const [ejex2, setEjex2] = useState(20);
-    const [ejey2, setEjey2] = useState(20);
-    const [color2, setColor2] = useState("#F701D8");
-    const [fontFamily2, setFontFamily2] = useState("Verdana");
-
-
-    const textomeme = (e) => {
-        setTextmeme(e.target.value);
-        // console.log(e.target.value);
-    }
-
-    const textomeme2 = (e) => {
-        setTextmeme2(e.target.value);
-        // console.log(e.target.value);
-    }
 
     useEffect(() => {
         fetch("https://api.imgflip.com/get_memes")
@@ -53,6 +31,24 @@ export default function Imgmemes() {
             });
     }
 
+    const handleClick = () => {
+        setTextosMemes([...textosMeme, { texto: "Ingrese aqui el texto", fontSize: 18, fontFamily: "Verdana", color: "#F701D8", ejex: 10, ejey: 10 }]);
+    }
+
+    const handleChange = (e, i) => {
+        const { name, value } = e.target
+        const onChangeVal = [...textosMeme]
+        onChangeVal[i][name] = value
+        setTextosMemes(onChangeVal)
+    }
+
+    const handleDelete = (i) => {
+        const deleteVal = [...textosMeme]
+        deleteVal.splice(i, 1)
+        setTextosMemes(deleteVal)
+    }
+
+
     return (
         <div className="text-center">
             <h1>Editor de Memes</h1>
@@ -60,9 +56,9 @@ export default function Imgmemes() {
             <div className="container">
                 <div className="meme-container">
                     <figure id="exportar">
-                        <p className="texto-meme" style={{ fontSize: `${fontSize}px`, transform: `translate(${ejex}px, ${ejey}px)`, color: `${color}`, fontFamily: `${fontFamily}` }}>{textmeme}</p>
-                        <p className="texto-meme" style={{ fontSize: `${fontSize2}px`, transform: `translate(${ejex2}px, ${ejey2}px)`, color: `${color2}`, fontFamily: `${fontFamily2}` }}>{textmeme2}</p>
-
+                        {textosMeme.map((val) =>
+                            <p className="texto-meme" style={{ fontSize: `${val.fontSize}px`, transform: `translate(${val.ejex}px, ${val.ejey}px)`, color: `${val.color}`, fontFamily: `${val.fontFamily}` }}>{val.texto}</p>
+                        )}
                         <img src={imgmeme} className="d-block" style={{ height: "100%", width: "100%" }} alt="meme nuevo" />
                     </figure>
                 </div>
@@ -80,60 +76,43 @@ export default function Imgmemes() {
                     </div>
 
                     <div className="texto-container">
-                        <h4>Ingresa el texto:</h4>
                         <div className="editor-row">
-                            <input onChange={textomeme} className="form-control" type="text" placeholder="Texto 1" />
-                            <input type="color" className="color" value={color} onChange={(e) => setColor(e.target.value)} />
+                            <h4>Ingresa el texto:</h4>
+                            <button className="btn btn-primary" onClick={handleClick}>+</button>
                         </div>
 
-                        <div className="editor-row">
+                        {textosMeme.map((val, i) =>
                             <div>
-                                <label>Ubicación horizontal:
-                                    <input type="range" min="0" max="400" value={ejex} onChange={(e) => setEjex(e.target.value)} />
-                                </label>
-                                <label>Ubicación vertical:
-                                    <input type="range" min="0" max="600" value={ejey} onChange={(e) => setEjey(e.target.value)} />
-                                </label>
+                                <div className="editor-row">
+                                    <input name="texto" className="form-control" type="text" placeholder="Ingresá el texto acá" onChange={(e) => handleChange(e, i)} />
+                                    <input name="color" type="color" className="color" value={val.color} onChange={(e) => handleChange(e, i)} />
+                                    <button className="btn btn-primary" onClick={handleDelete}>x</button>
+                                </div>
+
+                                <div className="editor-row">
+                                    <div>
+                                        <label>Ubicación horizontal:
+                                            <input name="ejex" type="range" min="0" max="400" value={val.ejex} onChange={(e) => handleChange(e, i)} />
+                                        </label>
+                                        <label>Ubicación vertical:
+                                            <input name="ejey" type="range" min="0" max="600" value={val.ejey} onChange={(e) => handleChange(e, i)} />
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label style={{ marginBottom: "1rem", marginRight: ".5rem" }}>Fuente:</label>
+                                        <select name="fontFamily" value={val.fontFamily} onChange={(e) => handleChange(e, i)}>
+                                            <option value={"Verdana"}>Verdana</option>
+                                            <option value={"Impact"}>Impact</option>
+                                            <option value={"Arial"}>Arial</option>
+                                        </select>
+
+                                        <label>Tamaño de la letra</label>
+                                        <input name="fontSize" type="range" min="10" max="100" value={val.fontSize} onChange={(e) => handleChange(e, i)} />
+                                    </div>
+                                </div>
                             </div>
-
-                            <div>
-                                <label style={{marginBottom:"1rem", marginRight:".5rem"}}>Fuente:</label>
-                                <select onChange={(e) => setFontFamily(e.target.value)}>
-                                    <option value={"Verdana"}>Verdana</option>
-                                    <option value={"Impact"}>Impact</option>
-                                    <option value={"Arial"}>Arial</option>
-                                </select>
-
-                                <label>Tamaño de la letra</label>
-                                <input type="range" min="10" max="100" value={fontSize} onChange={(e) => setFontSize(e.target.value)} />
-                            </div>
-                        </div>
-
-                        <div className="editor-row">
-                            <input onChange={textomeme2} className="form-control" type="text" placeholder="Texto 2" />
-                            <input type="color" className="color" value={color2} onChange={(e) => setColor2(e.target.value)} />
-                        </div>
-
-                        <div className="editor-row">
-                            <div>
-                                <label>Ubicación horizontal:</label>
-                                    <input type="range" min="0" max="400" value={ejex2} onChange={(e) => setEjex2(e.target.value)} />
-                                <label>Ubicación vertical:</label>
-                                    <input type="range" min="0" max="600" value={ejey2} onChange={(e) => setEjey2(e.target.value)} />
-                            </div>
-
-                            <div>
-                                <label style={{ marginBottom: "1rem", marginRight: ".5rem" }}>Fuente:</label>
-                                <select onChange={(e) => setFontFamily2(e.target.value)}>
-                                    <option value={"Verdana"}>Verdana</option>
-                                    <option value={"Impact"}>Impact</option>
-                                    <option value={"Arial"}>Arial</option>
-                                </select>
-
-                                <label>Tamaño de la letra</label>
-                                <input type="range" min="10" max="100" value={fontSize2} onChange={(e) => setFontSize2(e.target.value)} />
-                            </div>
-                        </div>
+                        )
+                        }
                     </div>
                 </div>
             </div>
