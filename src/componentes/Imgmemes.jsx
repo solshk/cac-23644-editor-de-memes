@@ -32,7 +32,7 @@ export default function Imgmemes() {
     }
 
     const handleClick = () => {
-        setTextosMemes([...textosMeme, { texto: "Ingrese aqui el texto", fontSize: 18, fontFamily: "Verdana", color: "#F701D8", ejex: 10, ejey: 10 }]);
+        setTextosMemes([...textosMeme, { texto: "", fontSize: 18, fontFamily: "Verdana", color: "#F701D8", ejex: 10, ejey: 10 }]);
     }
 
     const handleChange = (e, i) => {
@@ -69,7 +69,7 @@ export default function Imgmemes() {
 
                     <div className="galeria-container">
                         {memes.map(meme => (
-                            <div className="contenedor-img" >
+                            <div className="contenedor-img" key={meme.id}>
                                 <img src={meme.url} className="img" onClick={seleccionarImg} alt={meme.name} />
                             </div>))
                         }
@@ -84,9 +84,9 @@ export default function Imgmemes() {
                         {textosMeme.map((val, i) =>
                             <div>
                                 <div className="editor-row">
-                                    <input name="texto" className="form-control" type="text" placeholder="Ingresá el texto acá" onChange={(e) => handleChange(e, i)} />
+                                    <input name="texto" className="form-control" type="text" placeholder="Ingresá el texto acá" value={val.texto} onChange={(e) => handleChange(e, i)} />
                                     <input name="color" type="color" className="color" value={val.color} onChange={(e) => handleChange(e, i)} />
-                                    <button className="btn btn-primary" id="btn-colorcito" onClick={handleDelete}>x</button>
+                                    <button className="btn btn-primary" id="btn-colorcito" onClick={() => handleDelete(i)}>x</button>
                                 </div>
 
                                 <div className="editor-row">
@@ -120,7 +120,7 @@ export default function Imgmemes() {
             <button onClick={descargar} type="button" className="btn btn-primary" id="btn-descargar">Descargar</button>
 
             <footer>
-                <p class="footer__creditos">Hecho con ❤ por <a href="https://github.com/solshk">solshk</a></p>
+                <p className="footer__creditos">Hecho con ❤ por <a href="https://github.com/solshk">solshk</a></p>
             </footer>
 
         </div>
