@@ -65,14 +65,16 @@ export default function Imgmemes() {
 
 
                 <div className="editor-container">
-                    <h4>Seleccioná otra imagen:</h4>
 
-                    <div className="galeria-container">
-                        {memes.map(meme => (
-                            <div className="contenedor-img" key={meme.id}>
-                                <img src={meme.url} className="img" onClick={seleccionarImg} alt={meme.name} />
-                            </div>))
-                        }
+                    <div className="elegir-imagen-container">
+                        <h4>Seleccioná otra imagen:</h4>
+                        <div className="galeria-container">
+                            {memes.map(meme => (
+                                <div className="contenedor-img" key={meme.id}>
+                                    <img src={meme.url} className="img" onClick={seleccionarImg} alt={meme.name} />
+                                </div>))
+                            }
+                        </div>
                     </div>
 
                     <div className="texto-container">
