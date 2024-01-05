@@ -53,7 +53,7 @@ export default function Imgmemes() {
         <div className="imgMemes">
             <nav class="navbar navbar-dark navbar-expand-lg">
                 <div class="container-fluid">
-                    <h1>Editor de Memes</h1>
+                    <h1>Memeland</h1>
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -76,77 +76,77 @@ export default function Imgmemes() {
                 </div>
             </nav>
 
-            <main>
-                <div className="meme-container">
-                    <figure id="exportar">
+            <main className="meme-nuevo">
+                <div>
+                    {/* <figure id="exportar">
                         {textosMeme.map((val) =>
                             <p className="texto-meme" style={{ fontSize: `${val.fontSize}px`, transform: `translate(${val.ejex}px, ${val.ejey}px)`, color: `${val.color}`, fontFamily: `${val.fontFamily}` }}>{val.texto}</p>
                         )}
                         <img src={imgmeme} className="d-block" style={{ height: "100%", width: "100%" }} alt="meme nuevo" />
-                    </figure>
+                    </figure> */}
+                </div>
+            </main>
+
+            <section className="text-editor">
+                <div className="editor-row">
+                    <h4>Ingresa el texto:</h4>
+                    <button className="btn btn-primary" id="btn-colorcito" onClick={handleClick}>+</button>
                 </div>
 
+                {textosMeme.map((val, i) =>
+                    <div>
+                        <div className="editor-row">
+                            <input name="texto" className="form-control" type="text" placeholder="Ingresá el texto acá" value={val.texto} onChange={(e) => handleChange(e, i)} />
+                            <input name="color" type="color" className="color" value={val.color} onChange={(e) => handleChange(e, i)} />
+                            <button className="btn btn-primary" id="btn-colorcito" onClick={() => handleDelete(i)}>x</button>
+                        </div>
 
-                <div className="texto-container">
-                    <div className="editor-row">
-                        <h4>Ingresa el texto:</h4>
-                        <button className="btn btn-primary" id="btn-colorcito" onClick={handleClick}>+</button>
-                    </div>
-
-                    {textosMeme.map((val, i) =>
-                        <div>
-                            <div className="editor-row">
-                                <input name="texto" className="form-control" type="text" placeholder="Ingresá el texto acá" value={val.texto} onChange={(e) => handleChange(e, i)} />
-                                <input name="color" type="color" className="color" value={val.color} onChange={(e) => handleChange(e, i)} />
-                                <button className="btn btn-primary" id="btn-colorcito" onClick={() => handleDelete(i)}>x</button>
+                        <div className="editor-row">
+                            <div>
+                                <label>Ubicación horizontal:
+                                    <input name="ejex" type="range" min="0" max="400" value={val.ejex} onChange={(e) => handleChange(e, i)} />
+                                </label>
+                                <label>Ubicación vertical:
+                                    <input name="ejey" type="range" min="0" max="600" value={val.ejey} onChange={(e) => handleChange(e, i)} />
+                                </label>
                             </div>
+                            <div>
+                                <label style={{ marginBottom: "1rem", marginRight: ".5rem" }}>Fuente:</label>
+                                <select name="fontFamily" value={val.fontFamily} onChange={(e) => handleChange(e, i)}>
+                                    <option value={"Verdana"}>Verdana</option>
+                                    <option value={"Impact"}>Impact</option>
+                                    <option value={"Arial"}>Arial</option>
+                                </select>
 
-                            <div className="editor-row">
-                                <div>
-                                    <label>Ubicación horizontal:
-                                        <input name="ejex" type="range" min="0" max="400" value={val.ejex} onChange={(e) => handleChange(e, i)} />
-                                    </label>
-                                    <label>Ubicación vertical:
-                                        <input name="ejey" type="range" min="0" max="600" value={val.ejey} onChange={(e) => handleChange(e, i)} />
-                                    </label>
-                                </div>
-                                <div>
-                                    <label style={{ marginBottom: "1rem", marginRight: ".5rem" }}>Fuente:</label>
-                                    <select name="fontFamily" value={val.fontFamily} onChange={(e) => handleChange(e, i)}>
-                                        <option value={"Verdana"}>Verdana</option>
-                                        <option value={"Impact"}>Impact</option>
-                                        <option value={"Arial"}>Arial</option>
-                                    </select>
-
-                                    <label>Tamaño de la letra</label>
-                                    <input name="fontSize" type="range" min="10" max="100" value={val.fontSize} onChange={(e) => handleChange(e, i)} />
-                                </div>
+                                <label>Tamaño de la letra</label>
+                                <input name="fontSize" type="range" min="10" max="100" value={val.fontSize} onChange={(e) => handleChange(e, i)} />
                             </div>
                         </div>
-                    )
-                    }
-                </div>
-          
+                    </div>
+                )
+                }
+            </section>
+        
                 
             
 
-                <button onClick={descargar} type="button" className="btn btn-primary" id="btn-descargar">Descargar</button>
+            <button onClick={descargar} type="button" className="btn btn-primary" id="btn-descargar">Descargar</button>
 
-                <div className="elegir-imagen-container">
-                    <h4>Seleccioná otra imagen:</h4>
-                    <div className="galeria-container">
-                        {memes.map(meme => (
-                            <div className="contenedor-img" key={meme.id}>
-                                <img src={meme.url} className="img" onClick={seleccionarImg} alt={meme.name} />
-                            </div>))
-                        }
-                    </div>
-                </div>
-
-            </main>
+            <section className="meme-gallery">
+                <h4>Seleccioná otra imagen:</h4>
+                {/* <div className="galeria-container">
+                    {memes.map(meme => (
+                        <div className="contenedor-img" key={meme.id}>
+                            <img src={meme.url} className="img" onClick={seleccionarImg} alt={meme.name} />
+                        </div>))
+                    }
+                </div> */}
+            </section>
 
             <footer>
-                <p className="footer__creditos">Hecho con ❤ por <a href="https://github.com/solshk">solshk</a></p>
+                <div className="footerp">
+                    <p className="footer__creditos">Hecho con ❤ por <a href="https://github.com/solshk">solshk</a></p>
+                </div>
             </footer>
 
         </div>
