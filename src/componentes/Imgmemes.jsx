@@ -87,7 +87,7 @@ export default function Imgmemes() {
                 </div>
             </main>
 
-            <div className="btn-descargar">
+            <div className="btn-descargar d-flex align-items-center justify-content-center">
                 <button onClick={descargar} type="button" className="btn btn-primary" id="btn-descargar">Descargar</button>
             </div>
 
@@ -109,21 +109,21 @@ export default function Imgmemes() {
                             <div className="editor-row">
                                 <div className="editor-row-inputs container-fluid">
                                     <div>
-                                        <div className="editor-row-margin d-flex align-items-center">
+                                        <div className="editor-row-margin d-flex align-items-center flex-wrap">
                                             <label>Ubicación X:</label>
                                             <input name="ejex" type="range" min="0" max="400" value={val.ejex} onChange={(e) => handleChange(e, i)} />
                                         </div>
-                                        <div className="d-flex align-items-center">
+                                        <div className="d-flex align-items-center flex-wrap">
                                             <label>Ubicación Y:</label>
                                             <input name="ejey" type="range" min="0" max="600" value={val.ejey} onChange={(e) => handleChange(e, i)} />
                                         </div>
                                     </div>
-                                    <div style={{ marginLeft: "2rem" }}>
-                                        <div className="editor-row-margin d-flex align-items-center">
+                                    <div>
+                                        <div className="editor-row-margin d-flex align-items-center flex-wrap">
                                             <label>Tamaño fuente</label>
                                             <input name="fontSize" type="range" min="10" max="100" value={val.fontSize} onChange={(e) => handleChange(e, i)} />
                                         </div>
-                                        <div className="d-flex align-items-center">
+                                        <div className="d-flex align-items-center flex-wrap">
                                             <label>Fuente:</label>
                                             <select name="fontFamily" value={val.fontFamily} onChange={(e) => handleChange(e, i)}>
                                                 <option value={"Verdana"}>Verdana</option>
