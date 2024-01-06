@@ -78,69 +78,77 @@ export default function Imgmemes() {
 
             <main className="meme-nuevo">
                 <div>
-                    {/* <figure id="exportar">
+                    <figure id="exportar">
                         {textosMeme.map((val) =>
                             <p className="texto-meme" style={{ fontSize: `${val.fontSize}px`, transform: `translate(${val.ejex}px, ${val.ejey}px)`, color: `${val.color}`, fontFamily: `${val.fontFamily}` }}>{val.texto}</p>
                         )}
                         <img src={imgmeme} className="d-block" style={{ height: "100%", width: "100%" }} alt="meme nuevo" />
-                    </figure> */}
+                    </figure>
                 </div>
             </main>
 
+            <div className="btn-descargar">
+                <button onClick={descargar} type="button" className="btn btn-primary" id="btn-descargar">Descargar</button>
+            </div>
+
             <section className="text-editor">
-                <div className="editor-row">
-                    <h4>Ingresa el texto:</h4>
+                <div className="editor-subtitulo">
+                    <h4>Ingresá el texto:</h4>
                     <button className="btn btn-primary" id="btn-colorcito" onClick={handleClick}>+</button>
                 </div>
 
-                {textosMeme.map((val, i) =>
-                    <div>
-                        <div className="editor-row">
-                            <input name="texto" className="form-control" type="text" placeholder="Ingresá el texto acá" value={val.texto} onChange={(e) => handleChange(e, i)} />
-                            <input name="color" type="color" className="color" value={val.color} onChange={(e) => handleChange(e, i)} />
-                            <button className="btn btn-primary" id="btn-colorcito" onClick={() => handleDelete(i)}>x</button>
-                        </div>
-
-                        <div className="editor-row">
-                            <div>
-                                <label>Ubicación horizontal:
-                                    <input name="ejex" type="range" min="0" max="400" value={val.ejex} onChange={(e) => handleChange(e, i)} />
-                                </label>
-                                <label>Ubicación vertical:
-                                    <input name="ejey" type="range" min="0" max="600" value={val.ejey} onChange={(e) => handleChange(e, i)} />
-                                </label>
+                <div>
+                    {textosMeme.map((val, i) =>
+                        <div className="cajita-editor">
+                            <div className="editor-row">
+                                <input name="texto" className="form-control editor-row-input-texto" type="text" placeholder="Ingresá el texto acá" value={val.texto} onChange={(e) => handleChange(e, i)} />
+                                <input name="color" type="color" className="color" value={val.color} onChange={(e) => handleChange(e, i)} />
+                                <button className="btn btn-primary" id="btn-colorcito" onClick={() => handleDelete(i)}>x</button>
                             </div>
-                            <div>
-                                <label style={{ marginBottom: "1rem", marginRight: ".5rem" }}>Fuente:</label>
-                                <select name="fontFamily" value={val.fontFamily} onChange={(e) => handleChange(e, i)}>
-                                    <option value={"Verdana"}>Verdana</option>
-                                    <option value={"Impact"}>Impact</option>
-                                    <option value={"Arial"}>Arial</option>
-                                </select>
 
-                                <label>Tamaño de la letra</label>
-                                <input name="fontSize" type="range" min="10" max="100" value={val.fontSize} onChange={(e) => handleChange(e, i)} />
+                            <div className="editor-row">
+                                <div className="editor-row-inputs container-fluid">
+                                    <div>
+                                        <div className="editor-row-margin d-flex align-items-center">
+                                            <label>Ubicación X:</label>
+                                            <input name="ejex" type="range" min="0" max="400" value={val.ejex} onChange={(e) => handleChange(e, i)} />
+                                        </div>
+                                        <div className="d-flex align-items-center">
+                                            <label>Ubicación Y:</label>
+                                            <input name="ejey" type="range" min="0" max="600" value={val.ejey} onChange={(e) => handleChange(e, i)} />
+                                        </div>
+                                    </div>
+                                    <div style={{ marginLeft: "2rem" }}>
+                                        <div className="editor-row-margin d-flex align-items-center">
+                                            <label>Tamaño fuente</label>
+                                            <input name="fontSize" type="range" min="10" max="100" value={val.fontSize} onChange={(e) => handleChange(e, i)} />
+                                        </div>
+                                        <div className="d-flex align-items-center">
+                                            <label>Fuente:</label>
+                                            <select name="fontFamily" value={val.fontFamily} onChange={(e) => handleChange(e, i)}>
+                                                <option value={"Verdana"}>Verdana</option>
+                                                <option value={"Impact"}>Impact</option>
+                                                <option value={"Arial"}>Arial</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                )
-                }
+                    )
+                    }
+                </div>
             </section>
-        
-                
-            
-
-            <button onClick={descargar} type="button" className="btn btn-primary" id="btn-descargar">Descargar</button>
 
             <section className="meme-gallery">
                 <h4>Seleccioná otra imagen:</h4>
-                {/* <div className="galeria-container">
+                <div className="galeria-container">
                     {memes.map(meme => (
                         <div className="contenedor-img" key={meme.id}>
                             <img src={meme.url} className="img" onClick={seleccionarImg} alt={meme.name} />
                         </div>))
                     }
-                </div> */}
+                </div>
             </section>
 
             <footer>
