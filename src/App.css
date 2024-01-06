@@ -63,6 +63,12 @@ body{
   -webkit-box-shadow: 10px 10px 0px 0px rgba(67, 21, 183, 1);
   -moz-box-shadow: 10px 10px 0px 0px rgba(67, 21, 183, 1);
 }
+.navBarColor{
+  background-color: var(--violeta-oscuro);
+}
+.navBarColor-text{
+  color: var(--font-claro);
+}
 
 .meme-nuevo {
   grid-area: meme-nuevo;
